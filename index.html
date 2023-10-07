@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #220033; /* Dark purple background */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #9B59B6; /* Purple color for the title */
+        }
+        #converter {
+            background-color: #3E206D; /* Darker purple for the converter background */
+            padding: 30px; /* Increased padding for a larger converter */
+            border: 3px solid #9B59B6; /* Purple border */
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 350px; /* Increased width for a larger converter */
+            margin: 20px auto;
+        }
+        input[type="number"] {
+            width: 100px;
+            padding: 5px;
+            margin: 5px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #9B59B6; /* Purple button background */
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        #result {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #9B59B6; /* Purple result text */
+        }
+        select {
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Temperature Converter</h1>
+    <div id="converter">
+        <input type="number" id="inputTemp" placeholder="Enter temperature">
+        <br>
+        <select id="conversionType">
+            <option value="celsiusToFahrenheit">Celsius to Fahrenheit</option>
+            <option value="fahrenheitToCelsius">Fahrenheit to Celsius</option>
+            <option value="celsiusToKelvin">Celsius to Kelvin</option>
+            <option value="kelvinToCelsius">Kelvin to Celsius</option>
+            <option value="fahrenheitToKelvin">Fahrenheit to Kelvin</option>
+            <option value="kelvinToFahrenheit">Kelvin to Fahrenheit</option>
+        </select>
+        <br>
+        <button onclick="convertTemperature()">Convert</button>
+        <br>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function convertTemperature() {
+            const inputTemp = parseFloat(document.getElementById("inputTemp").value);
+            const conversionType = document.getElementById("conversionType").value;
+
+            let result;
+            
+            switch (conversionType) {
+                case "celsiusToFahrenheit":
+                    result = (inputTemp * 9/5) + 32;
+                    break;
+                case "fahrenheitToCelsius":
+                    result = (inputTemp - 32) * 5/9;
+                    break;
+                case "celsiusToKelvin":
+                    result = inputTemp + 273.15;
+                    break;
+                case "kelvinToCelsius":
+                    result = inputTemp - 273.15;
+                    break;
+                case "fahrenheitToKelvin":
+                    result = (inputTemp - 32) * 5/9 + 273.15;
+                    break;
+                case "kelvinToFahrenheit":
+                    result = (inputTemp - 273.15) * 9/5 + 32;
+                    break;
+                default:
+                    result = "Invalid conversion type";
+            }
+
+            document.getElementById("result").textContent = `Result: ${result.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
+
